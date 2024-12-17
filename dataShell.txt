@@ -1,0 +1,47 @@
+# Script para rellenar datos en Django usando el shell
+
+python manage.py shell
+
+from school.models import Student, Course
+
+# Insertar datos en la tabla Student
+Student.objects.create(first_name='Juan', last_name='Pérez', email='juan.perez@example.com', age=20)
+Student.objects.create(first_name='Ana', last_name='Gómez', email='ana.gomez@example.com', age=22)
+Student.objects.create(first_name='Carlos', last_name='Rodríguez', email='carlos.rodriguez@example.com', age=18)
+Student.objects.create(first_name='María', last_name='López', email='maria.lopez@example.com', age=19)
+Student.objects.create(first_name='Lucía', last_name='Fernández', email='lucia.fernandez@example.com', age=21)
+
+# Insertar datos en la tabla Course
+course1 = Course.objects.create(name='Matemáticas Avanzadas', description='Curso intensivo de cálculo y álgebra lineal')
+course2 = Course.objects.create(name='Programación en Python', description='Curso introductorio a la programación en Python')
+course3 = Course.objects.create(name='Diseño UX/UI', description='Principios básicos de diseño de experiencia e interfaz de usuario')
+course4 = Course.objects.create(name='Historia del Arte', description='Exploración de movimientos artísticos y sus contextos históricos')
+course5 = Course.objects.create(name='Física Cuántica', description='Introducción a los conceptos fundamentales de la física cuántica')
+
+# Asociar estudiantes a cursos
+juan = Student.objects.get(email='juan.perez@example.com')
+ana = Student.objects.get(email='ana.gomez@example.com')
+carlos = Student.objects.get(email='carlos.rodriguez@example.com')
+maria = Student.objects.get(email='maria.lopez@example.com')
+lucia = Student.objects.get(email='lucia.fernandez@example.com')
+
+course1.students.add(juan, ana)
+course2.students.add(carlos, maria)
+course3.students.add(juan, lucia)
+course4.students.add(ana)
+course5.students.add(maria, lucia)
+
+print("Datos insertados correctamente en la base de datos")
+
+# Mostrar estudiantes creados
+print("\nEstudiantes creados:")
+for student in Student.objects.all():
+    print(student)
+
+# Mostrar cursos creados y cantidad de estudiantes asociados
+print("\nCursos creados:")
+for course in Course.objects.all():
+    print(f"{course.name}: {course.students.count()} estudiantes")
+
+
+exit()

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+</head>
+<body>
+    <h1>Student List</h1>
+    <ul>
+        {% for student in students %}
+            <li>{{ student }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Student List</h1>
+    <ul>
+        {% for student in students %}
+            <li>ID:{{ student.id }}, Name: {{student.first_name}}, Last name: {{student.last_name}}, Email: {{student.email}}, Age: {{student.age}}, Enrollment Date: {{student.enrollment_date}}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Student List</h1>
+    <ul>
+        {% for student in students %}
+            <li>ID:{{ student.0 }}, Name: {{student.1}}, Last name: {{student.2}}, Email: {{student.3}}, Age: {{student.4}}, Enrollment Date: {{student.5}}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
